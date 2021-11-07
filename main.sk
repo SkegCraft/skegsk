@@ -1,0 +1,35 @@
+# Main test example, this is for Skegcraft.
+
+#include bf.sk
+#include fake.sk
+#include chat.sk
+
+command /help:
+	trigger:
+		message "<yellow><b>--- Help ---"
+		message "/rules - Server rules"
+		message "/about - Server info"
+		message "Discord: https://v.ht/ilVJ"
+		message "Matrix: Skegcraft:matrix.org"
+
+command /rules:
+	trigger:
+		message "<yellow><b>--- Rules ---"
+		message "1. Please be nice"
+		message "2. Use common sense"
+		message "3. Respect other people's homes/places"
+		message "4. Excessive cursing will result in ban"
+		message "5. You may not duplicate items or exploit unintended behavior in the server"
+
+command /about:
+	trigger:
+		message "<yellow><b>--- About ---"
+		message "This server is hosted in North Carolina."
+		message "RAM: 8GB DDR3"
+		message "CPU: Intel Core i5 2400"
+		message  "Storage: 60GB SSD"
+
+on join:
+	wait 5 ticks
+	broadcast "Welcome, %player% to SkegCraft!"
+	make console execute command "/execute at @a run playsound minecraft:entity.experience_orb.pickup ambient @p ~ ~ ~"

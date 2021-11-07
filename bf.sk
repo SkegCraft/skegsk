@@ -1,0 +1,61 @@
+# bf.sk, GPL3.0 License
+# By Daniel C, petabyt.dev
+
+# Try to parse out capitalized ASCII
+function ascii(char: number) :: text:
+	if {_char} >= 65:
+		set {_chars::*} to "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+		return {_chars::%{_char} - 65 + 1%}
+	return "%{_char}%"
+
+command /bf <text>:
+	trigger:
+		set {_limiter} to 0
+
+		# Set up string as array
+		set {_length} to the length of arg-1
+		set {_code::*} to arg-1 split at ""
+		set {_pc} to 1
+
+		# Set up memory tape
+		set {_mem::*} to 0
+		set {_fp} to 1
+
+		# Set up nested bracket locations
+		set {_bracket::*} to 0
+		set {_bp} to 1
+
+		while {_pc} is not {_length} + 1:
+			set {_char} to {_code::%{_pc}%}
+
+			if {_char} is "+":
+				set {_mem::%{_fp}%} to {_mem::%{_fp}%} + 1
+			else if {_char} is "-":
+				set {_mem::%{_fp}%} to {_mem::%{_fp}%} - 1
+			else if {_char} is "<":
+				set {_fp} to {_fp} - 1
+			else if {_char} is ">":
+				set {_fp} to {_fp} + 1
+			else if {_char} is ".":
+				set {_temp} to ascii({_mem::%{_fp}%})
+				send "%{_temp}%" to player
+			else if {_char} is "[":
+				set {_bracket::%{_bp}%} to {_pc}
+				set {_bp} to {_bp} + 1
+			else if {_char} is "]":
+				# Limiter to prevent crashes
+				set {_limiter} to {_limiter} + 1
+				if {_limiter} is 100:
+					send "Capped 100 loop, quitting" to player
+					stop trigger
+
+				if {_bp} is 1:
+					send "Error, missing start bracket"
+					stop trigger
+
+				# Jump to last called
+				if {_mem::%{_fp}%} is not 0:
+					set {_bp} to {_bp} - 1
+					set {_pc} to {_bracket::%{_bp}%} - 1
+
+			set {_pc} to {_pc} + 1

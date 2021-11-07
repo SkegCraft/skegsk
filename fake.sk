@@ -1,0 +1,25 @@
+# Block commands with stupid humor
+command /tp:
+	usage: Nice try.
+	trigger:
+		message "Nice try."
+
+command /give:
+	usage: No, you may not have 64 diamond blocks.
+	trigger:
+		message "No, you may not have 64 diamond blocks."
+
+command /plugins:
+	usage: Plugins? I don't use those.. Or do I?
+	trigger:
+		message "Plugins? I don't use those.. Or do I?"
+
+command /kill:
+	usage: Did you really think that would work?
+	trigger:
+		message "Did you really think that would work?"
+
+command /clear:
+	usage: I think you have been using too much Unix.
+	trigger:
+		message "I think you have been using too much Unix."
