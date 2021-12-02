@@ -1,4 +1,5 @@
-# Block commands with stupid humor
+# Block commands with "humor"
+
 command /tp:
 	usage: Nice try.
 	trigger:
@@ -15,11 +16,12 @@ command /plugins:
 		message "Plugins? I don't use those.. Or do I?"
 
 command /kill:
-	usage: Did you really think that would work?
+	usage: No. Starve.
 	trigger:
-		message "Did you really think that would work?"
+		message "No. Starve."
 
 command /clear:
 	usage: I think you have been using too much Unix.
 	trigger:
 		message "I think you have been using too much Unix."
+

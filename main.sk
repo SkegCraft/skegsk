@@ -1,5 +1,6 @@
-# Main test example, this is for Skegcraft.
+# Skegcraft main backend
 
+#include world.sk
 #include bf.sk
 #include fake.sk
 #include chat.sk
@@ -9,17 +10,21 @@ command /help:
 		message "<yellow><b>--- Help ---"
 		message "/rules - Server rules"
 		message "/about - Server info"
-		message "Discord: https://v.ht/ilVJ"
-		message "Matrix: Skegcraft:matrix.org"
+		message "/skeg1 - Teleport to Skegcraft 1 (2016-2021)"
+		message "/skeg2 - Teleport to the latest world"
+		message "/bf <string> - Execute some BrainF*ck"
+		message ""
+		message "Matrix: skegcraft:matrix.org"
+		message "Site: https://skegcraft.net/"
 
 command /rules:
 	trigger:
 		message "<yellow><b>--- Rules ---"
-		message "1. Please be nice"
-		message "2. Use common sense"
-		message "3. Respect other people's homes/places"
-		message "4. Excessive cursing will result in ban"
-		message "5. You may not duplicate items or exploit unintended behavior in the server"
+		message "1. You may do good and not evil."
+		message "2. Use your common sense."
+		message "3. Respect other user's creations"
+		message "4. No excessive cursing or pornography/gore"
+		message "5. Do NOT duplicate items or exploit unintended behavior"
 
 command /about:
 	trigger:
@@ -27,9 +32,9 @@ command /about:
 		message "This server is hosted in North Carolina."
 		message "RAM: 8GB DDR3"
 		message "CPU: Intel Core i5 2400"
-		message  "Storage: 60GB SSD"
+		message "SSD: 256GB"
 
 on join:
-	wait 5 ticks
-	broadcast "Welcome, %player% to SkegCraft!"
-	make console execute command "/execute at @a run playsound minecraft:entity.experience_orb.pickup ambient @p ~ ~ ~"
+	set join message to "Welcome, %player% to SkegCraft!"
+	loop all players:
+		play sound "entity.experience_orb.pickup" with volume 1 to the player
