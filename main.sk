@@ -1,5 +1,15 @@
 # Skegcraft main backend
 
+# Fake whitelist, so players can spectate old worlds
+function isWhitelisted(pl: player) :: boolean:
+	set {_whitelist::*} to "petabyt", "MasterOfTheTiger"
+	set {_i} to 1
+	loop {_whitelist::*}:
+		if {_whitelist::%{_i}%} is {_pl}:
+			return true
+		set {_i} to {_i} + 1
+	return false
+
 on load:
 	# Normal mode skeg2
 	make console execute command "mv modify set difficulty normal world"
@@ -31,7 +41,7 @@ command /help:
 		message "/about - Server info"
 		message "/skeg1 - Teleport to Skegcraft 1 (2016-2021)"
 		message "/skeg2 - Teleport to the latest world"
-		message "/bf <string> - Execute some BrainF*ck"
+		message "/bf <string> - Execute some BrainFrick"
 		message ""
 		message "Matrix: skegcraft:matrix.org"
 		message "Site: https://skegcraft.net/"
@@ -64,6 +74,14 @@ command /resume:
 			make console execute command "/gamerule doDaylightCycle true"
 
 on join:
-	set join message to "Welcome, %player% to SkegCraft!"
+	if isWhitelisted(player) is true:
+		if player is in "world" or "world_the_end" or "world_nether":
+			make console execute command "mv tp %player% world"
+		set join message to "<orange>Welcome, %player% to SkegCraft!"
+	else:
+		if player is in "world" or "world_the_end" or "world_nether":
+			make console execute command "mv tp %player% old"
+		message "Sorry, you aren't whitelisted in Skegcraft 2. Visit skegcraft.net to join. You can still spectate the archived Skegcraft world."
+
 	loop all players:
 		play sound "entity.experience_orb.pickup" with volume 1 to the player
