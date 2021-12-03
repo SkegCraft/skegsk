@@ -11,23 +11,26 @@ command /skeg1:
 command /skeg2:
 	usage: "Teleport to the Skegcraft 2 world"
 	trigger:
-		make console execute command "mv tp %player% world"
+		if isWhitelisted(player) is true:
+			make console execute command "mv tp %player% world"
+		else:
+			message "Sorry, you aren't whitelisted. Apply at skegcraft.net"
 
 # Disable portals (end and nether)
 on portal:
 	cancel event
-	
 #	if player is in "old":
 #		make console execute command "mv tp %player% old_nether"
 #	else if player is in "old_nether":
 #		make console execute command "mv tp %player% old"
 
 on command:
-	if command sender is not console: 
-		if command starts with "mv":
-			cancel event
+	if command sender is not console:
+		if command sender does not have permission "admin": 
+			if command starts with "mv":
+				cancel event
 
 command /places:
 	trigger:
-		if player is in "old" or "old_nether":
+		if player is in "old":
 			message "<run command:/tp @p 216 64 243>Teleport to Spawn"
