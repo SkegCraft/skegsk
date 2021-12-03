@@ -1,5 +1,24 @@
 # Skegcraft main backend
 
+on load:
+	# Normal mode skeg2
+	make console execute command "mv modify set difficulty normal world"
+	make console execute command "mv modify set difficulty normal world_the_end"
+	make console execute command "mv modify set difficulty normal world_nether"
+
+	# Survival skeg2
+	make console execute command "mv modify set gamemode survival world"
+	make console execute command "mv modify set gamemode survival world_the_end"
+	make console execute command "mv modify set gamemode survival world_nether"
+
+	# Peaceful skeg1
+	make console execute command "mv modify set difficulty peaceful old"
+	make console execute command "mv modify set difficulty peaceful old_nether"
+
+	# Spectator skeg1
+	make console execute command "mv modify set gamemode spectator old"
+	make console execute command "mv modify set gamemode spectator old_nether"
+
 #include world.sk
 #include bf.sk
 #include fake.sk
@@ -34,7 +53,15 @@ command /about:
 		message "CPU: Intel Core i5 2400"
 		message "SSD: 256GB"
 
-command /
+command /pause:
+	trigger:
+		if player has permission "admin":
+			make console execute command "/gamerule doDaylightCycle false"
+
+command /resume:
+	trigger:
+		if player has permission "admin":
+			make console execute command "/gamerule doDaylightCycle true"
 
 on join:
 	set join message to "Welcome, %player% to SkegCraft!"
