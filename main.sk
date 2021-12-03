@@ -34,6 +34,8 @@ command /about:
 		message "CPU: Intel Core i5 2400"
 		message "SSD: 256GB"
 
+command /
+
 on join:
 	set join message to "Welcome, %player% to SkegCraft!"
 	loop all players:

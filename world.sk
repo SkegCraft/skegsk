@@ -14,11 +14,20 @@ command /skeg2:
 		make console execute command "mv tp %player% world"
 
 # Disable portals (end and nether)
-#on portal:
+on portal:
+	cancel event
+	
 #	if player is in "old":
-#		cancel event
+#		make console execute command "mv tp %player% old_nether"
+#	else if player is in "old_nether":
+#		make console execute command "mv tp %player% old"
 
 on command:
 	if command sender is not console: 
 		if command starts with "mv":
 			cancel event
+
+command /places:
+	trigger:
+		if player is in "old" or "old_nether":
+			message "<run command:/tp @p 216 64 243>Teleport to Spawn"
