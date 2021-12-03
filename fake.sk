@@ -1,27 +1,20 @@
 # Block commands with "humor"
 
-command /tp:
-	usage: Nice try.
-	trigger:
-		message "Nice try."
-
-command /give:
-	usage: No, you may not have 64 diamond blocks.
-	trigger:
-		message "No, you may not have 64 diamond blocks."
-
-command /plugins:
-	usage: Plugins? I don't use those.. Or do I?
-	trigger:
-		message "Plugins? I don't use those.. Or do I?"
-
-command /kill:
-	usage: No. Starve.
-	trigger:
-		message "No. Starve."
-
-command /clear:
-	usage: I think you have been using too much Unix.
-	trigger:
-		message "I think you have been using too much Unix."
-
+on command:
+	if command sender is not console:
+		if command starts with "tp":
+			message "Nice try."
+			cancel event
+		else if command starts with "give":
+			message "No, you may not have 64 diamond blocks."
+			cancel event
+		else if command starts with "plugins":
+			message "Skript is used for the custom commands you are using right now, and multiverse is used to host an archive of the old Skegcraft world."
+			cancel event
+		else if command starts with "kill":
+			message "No. Starve."
+			cancel event
+		else if command starts with "clear":
+			message "Looks like somebody has been using too much Unix."
+			message "You're lucky you aren't the server admin, I did this once."
+			cancel event
