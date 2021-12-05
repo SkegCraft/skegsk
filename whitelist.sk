@@ -1,0 +1,9 @@
+# Stupid whitelist, so players can spectate old worlds
+function isWhitelisted(pl: player) :: boolean:
+	set {_whitelist::*} to "petabyt", "MasterOfTheTiger", "kilobit_", "Icecat3", "TacticalPizza_", "vault112", "ShanShen", "Cookiekitten73", "323GHS", "aarchangels", "SuperLuca07", "AntiLukewarm", "doancdum"
+	set {_i} to 1
+	loop {_whitelist::*}:
+		if {_whitelist::%{_i}%} is {_pl}:
+			return true
+		set {_i} to {_i} + 1
+	return false
