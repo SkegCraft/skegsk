@@ -1,38 +1,24 @@
 # Skegcraft main backend
+# Daniel C, GPL 3.0
 
-# Fake whitelist, so players can spectate old worlds
-function isWhitelisted(pl: player) :: boolean:
-	set {_whitelist::*} to "petabyt", "MasterOfTheTiger"
-	set {_i} to 1
-	loop {_whitelist::*}:
-		if {_whitelist::%{_i}%} is {_pl}:
-			return true
-		set {_i} to {_i} + 1
-	return false
+#include init.sk
 
-on load:
-	# Normal mode skeg2
-	make console execute command "mv modify set difficulty normal world"
-	make console execute command "mv modify set difficulty normal world_the_end"
-	make console execute command "mv modify set difficulty normal world_nether"
+# TODO: players can abuse skeg1 to replicate /spawn
+# Players can abuse skeg1 to heal
+# note sidebar
+# detect when diamond or netherite is obtained and add to currency value
 
-	# Survival skeg2
-	make console execute command "mv modify set gamemode survival world"
-	make console execute command "mv modify set gamemode survival world_the_end"
-	make console execute command "mv modify set gamemode survival world_nether"
+#define OLD_SPAWN 216, 63, 243
+#define NEW_SPAWN 48, 68, 72
+#define OLD_MSG "Type /places for a list of memorable locations in Skegcraft 1. Also, note that maps aren't working."
 
-	# Peaceful skeg1
-	make console execute command "mv modify set difficulty peaceful old"
-	make console execute command "mv modify set difficulty peaceful old_nether"
-
-	# Spectator skeg1
-	make console execute command "mv modify set gamemode spectator old"
-	make console execute command "mv modify set gamemode spectator old_nether"
-
+#include whitelist.sk
 #include world.sk
 #include bf.sk
 #include fake.sk
 #include chat.sk
+#include note.sk
+#include currency.sk
 
 command /help:
 	trigger:
@@ -64,24 +50,31 @@ command /about:
 		message "SSD: 256GB"
 
 command /pause:
+	permission: admin
 	trigger:
-		if player has permission "admin":
-			make console execute command "/gamerule doDaylightCycle false"
+		make console execute command "/gamerule doDaylightCycle false"
+		make console execute command "/gamerule doWeatherCycle false"
 
 command /resume:
+	permission: admin
 	trigger:
-		if player has permission "admin":
-			make console execute command "/gamerule doDaylightCycle true"
+		make console execute command "/gamerule doDaylightCycle true"
+		make console execute command "/gamerule doWeatherCycle true"
+
+command /spawn:
+	trigger:
+		message "Head to 48, 68, 72"
 
 on join:
 	if isWhitelisted(player) is true:
-		if player is in "world" or "world_the_end" or "world_nether":
-			make console execute command "mv tp %player% world"
+		if player is in "old" or "old_nether":
+			teleport the player to location(NEW_SPAWN, world("world"))
 		set join message to "<orange>Welcome, %player% to SkegCraft!"
 	else:
 		if player is in "world" or "world_the_end" or "world_nether":
-			make console execute command "mv tp %player% old"
+			teleport the player to location(OLD_SPAWN, world("old"))
 		message "Sorry, you aren't whitelisted in Skegcraft 2. Visit skegcraft.net to join. You can still spectate the archived Skegcraft world."
+		message OLD_MSG
 
 	loop all players:
 		play sound "entity.experience_orb.pickup" with volume 1 to the player
