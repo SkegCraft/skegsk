@@ -1,0 +1,12 @@
+# Basic currency counter
+# Daniel C 2021, GPL3.0
+
+variables:
+	{diamonds} = 10
+	{netherite} = 0
+
+on mine of diamond ore:
+	set {diamonds} to {diamonds} + 1
+
+on craft of netherite ingot:
+	set {netherite} to {netherite} + 1
