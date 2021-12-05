@@ -6,31 +6,90 @@
 command /skeg1:
 	usage: "Teleport to 2016-2021 Skegcraft 1 world"
 	trigger:
-		make console execute command "mv tp %player% old"
+		if player is in "world_the_end" or "world_nether":
+			message "Sorry, you gotta get to the overworld first..."
+		else:
+			message OLD_MSG
+			teleport the player to location(OLD_SPAWN, world("old"))
 
 command /skeg2:
 	usage: "Teleport to the Skegcraft 2 world"
 	trigger:
 		if isWhitelisted(player) is true:
-			make console execute command "mv tp %player% world"
+			if player is not in "old":
+				message "You must be in skeg1 to teleport"
+			else:
+				make console execute command "mv tp %player% world"
 		else:
 			message "Sorry, you aren't whitelisted. Apply at skegcraft.net"
 
 # Disable portals (end and nether)
-on portal:
-	cancel event
+#on portal:
 #	if player is in "old":
+#		cancel event
 #		make console execute command "mv tp %player% old_nether"
 #	else if player is in "old_nether":
+#		cancel event
 #		make console execute command "mv tp %player% old"
 
+# Block out multiverse
 on command:
 	if command sender is not console:
 		if command sender does not have permission "admin": 
 			if command starts with "mv":
 				cancel event
 
-command /places:
+command /place <text>:
 	trigger:
 		if player is in "old":
-			message "<run command:/tp @p 216 64 243>Teleport to Spawn"
+			if arg-1 is "spawn":
+				teleport player to location(OLD_SPAWN, world("old"))
+			else if arg-1 is "inverse-island":
+				teleport player to location(135, 32, 156, world("old"))
+			else if arg-1 is "library":
+				teleport player to location(-31, 68, 35, world("old"))
+			else if arg-1 is "community-island":
+				teleport player to location(-490, 77, 257, world("old"))
+			else if arg-1 is "anna-base1":
+				teleport player to location(-548, 84, -88, world("old"))
+			else if arg-1 is "anna-base2":
+				teleport player to location(-1279, 83, -3169, world("old"))
+			else if arg-1 is "anna-base3":
+				teleport player to location(-6540, 98, -2916, world("old"))
+			else if arg-1 is "anna-base4":
+				teleport player to location(-6640, 63, -2758, world("old"))
+			else if arg-1 is "anna-base5":
+				teleport player to location(-7510, 63, -2770, world("old"))
+			else if arg-1 is "aarch-base":
+				teleport player to location(-467, 68, 1134, world("old"))
+			else if arg-1 is "petabyte-base":
+				teleport player to location(-702, 66, -857, world("old"))
+			else if arg-1 is "icecat-base":
+				teleport player to location(-666, 70, 544, world("old"))
+			else if arg-1 is "mott-base":
+				teleport player to location(-769, 63, 449, world("old"))
+		else:
+			message "Command only for old world"
+
+command /places:
+	# TODO: Place command
+	trigger:
+		if player is in "old":
+			message "<yellow><b>--- Places ---"
+			message "Click the link to teleport. Don't use it a ton, it makes CPU usage go through the roof :)"
+			message "<run command:/place spawn>=> Spawn"
+			message "<run command:/place inverse-island>=> Inverse Island"
+			message "<run command:/place library>=> Library"
+			message "<run command:/place community-island>=> Community Island"
+			message "<run command:/place anna-base1>=> Kilo_'s First Base"
+			message "<run command:/place anna-base2>=> Kilo_'s Second Base"
+			message "<run command:/place anna-base3>=> Kilo_'s Third Base"
+			message "<run command:/place anna-base4>=> Kilo_'s Fourth Base"
+			message "<run command:/place anna-base5>=> Kilo_'s Fifth Base"
+			message "<run command:/place aarch-base>=> Aarchangel's Base"
+			message "<run command:/place petabyte-base>=> Secret Petabyte Base"
+			message "<run command:/place icecat-base>=> Icecat's Base"
+			message "<run command:/place mott-base>=> Mott's Base"
+
+		else:
+			message "Command only for old world"
