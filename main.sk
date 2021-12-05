@@ -3,11 +3,6 @@
 
 #include init.sk
 
-# TODO: players can abuse skeg1 to replicate /spawn
-# Players can abuse skeg1 to heal
-# note sidebar
-# detect when diamond or netherite is obtained and add to currency value
-
 #define OLD_SPAWN 216, 63, 243
 #define NEW_SPAWN 48, 68, 72
 #define OLD_MSG "Type /places for a list of memorable locations in Skegcraft 1. Also, note that maps aren't working."
