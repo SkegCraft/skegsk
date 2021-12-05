@@ -1,0 +1,6 @@
+# note.sk, GPL3.0
+# Copyleft Daniel C 2021
+
+command /n <text>:
+	trigger:
+		message "<bold><green>%arg-1%"
