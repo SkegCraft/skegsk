@@ -12,15 +12,17 @@ on chat:
 		broadcast "<blue><%player%><white> %message%"
 	else if player is "323GHS":
 		broadcast "<blue><%player%><white> %message%"
-	else if player is "BoblyPizza":
-		broadcast "<red><%player%><white> %message%"
-	else if player is "Atraune":
-		broadcast "<orange><%player%><white> %message%"
+	else if player is "TacticalPizza_":
+		broadcast "<yellow><%player%><white> %message%"
+	else if player is "kilobit_":
+		broadcast "<light cyan><kilo><white> %message%"
 	else if player is "SuperLuca07":
-		broadcast "<orange><%player%><white> %message%"
+		broadcast "<green><%player%><white> %message%"
 	else if player is "Cookiekitten73":
 		broadcast "<purple><%player%><white> %message%"
 	else if player is "vault112":
 		broadcast "<green><%player%><white> %message%"
+	else if player is "AntiLukewarm":
+		broadcast "<red><%player%><white> %message%"
 	else:
 		broadcast "<%player%> %message%"
