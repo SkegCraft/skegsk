@@ -1,12 +1,17 @@
 # Basic currency counter
 # Daniel C 2021, GPL3.0
 
-variables:
-	{diamonds} = 10
-	{netherite} = 0
+on mine of diamond_ore:
+	set {diamonds} to {diamonds} + 1
 
-on mine of diamond ore:
+on mine of deepslate_diamond_ore:
 	set {diamonds} to {diamonds} + 1
 
 on craft of netherite ingot:
 	set {netherite} to {netherite} + 1
+
+command /stats:
+	trigger:
+		message "<bold>Server 'economy' stats:"
+		message "%{diamonds}% diamond ore blocks have been mined."
+		message "%{netherite}% netherite has have been crafted."
