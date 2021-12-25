@@ -4,3 +4,8 @@
 command /n <text>:
 	trigger:
 		message "<bold><green>%arg-1%"
+		set {note::%uuid of player%} to arg-1
+
+command /ng:
+	trigger:
+		message "<bold><green>%{note::%uuid of player%}%"
