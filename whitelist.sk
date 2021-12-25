@@ -1,24 +1,34 @@
-# TODO: check uuid
-
-variables:
-	{whitelist::*} = "petabyt", "MasterOfTheTiger", "kilobit_", "Icecat3", "TacticalPizza_", "vault112", "ShanShen", "Cookiekitten73", "323GHS", "aarchangels", "SuperLuca07", "AntiLukewarm", "doancdum"
-
 # Stupid whitelist, so players can spectate old worlds
 function isWhitelisted(pl: player) :: boolean:
 	set {_i} to 1
 	loop {whitelist::*}:
 		if {whitelist::%{_i}%} is {_pl}:
+			# UUID checker
+			if {whitelist_uuid::%{_pl}%} is set:
+				if {whitelist_uuid::%{_pl}%} is not uuid of {_pl}:
+					broadcast "invalid UUID, SOMEBODY MAY BE TRYING TO DO SOMETHING NASTY!!!"
+					return false
+			set {whitelist_uuid::%{_pl}%} to uuid of {_pl}
+
 			return true
 		set {_i} to {_i} + 1
 	return false
 
-command whitelist_remove <text>:
+command /whitelist_list:
+	trigger:
+		message "<bold>Current whitelist:"
+		set {_i} to 1
+		loop {whitelist::*}:
+			message {whitelist::%{_i}%}
+			set {_i} to {_i} + 1
+
+command /whitelist_remove <text>:
 	permission: admin
 	trigger:
 		remove arg-1 from {whitelist::*}
 		message "Removed %arg-1%"
 
-command whitelist_add <text>:
+command /whitelist_add <text>:
 	permission: admin
 	trigger:
 		add arg-1 to {whitelist::*}
