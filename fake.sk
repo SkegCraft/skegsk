@@ -2,14 +2,11 @@
 
 on command:
 	if command sender is not console:
-		if command starts with "tp":
+		if command starts with "tp ":
 			message "Nice try."
 			cancel event
 		else if command starts with "give":
 			message "No, you may not have 64 diamond blocks."
-			cancel event
-		else if command starts with "plugins":
-			message "Skript is used for the custom commands you are using right now, and multiverse is used to host an archive of the old Skegcraft world."
 			cancel event
 		else if command starts with "kill":
 			message "No. Starve."

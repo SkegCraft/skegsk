@@ -77,7 +77,8 @@ on join:
 	else:
 		if player is in "world" or "world_the_end" or "world_nether":
 			teleport the player to location(OLD_SPAWN, world("old"))
-		message "Sorry, you aren't whitelisted in Skegcraft 2. Visit skegcraft.net to join. You can still spectate the archived Skegcraft world."
+		message "Sorry, you aren't whitelisted in Skegcraft 2. You can still spectate the archived Skegcraft world."
+		message "<bold>Use this form to join: https://forms.gle/guorzZ63FZ133pqu9"
 		message OLD_MSG
 
 	loop all players:

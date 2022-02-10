@@ -24,5 +24,7 @@ on chat:
 		broadcast "<green><%player%><white> %message%"
 	else if player is "AntiLukewarm":
 		broadcast "<red><%player%><white> %message%"
+	else if player is "MagicManatee657":
+		broadcast "<blue><%player%><white> %message%"
 	else:
 		broadcast "<%player%> %message%"
