@@ -66,8 +66,12 @@ command /place <text>:
 				teleport player to location(-702, 66, -857, world("old"))
 			else if arg-1 is "icecat-base":
 				teleport player to location(-666, 70, 544, world("old"))
+			else if arg-1 is "icecat-secret-base":
+				teleport player to location(-2007, 32, 547, world("old"))
 			else if arg-1 is "mott-base":
 				teleport player to location(-769, 63, 449, world("old"))
+			else
+				message "Invalid location"
 		else:
 			message "Command only for old world"
 
@@ -76,7 +80,7 @@ command /places:
 	trigger:
 		if player is in "old":
 			message "<yellow><b>--- Places ---"
-			message "Click the link to teleport. Don't use it a ton, it makes CPU usage go through the roof :)"
+			message "Click the link to teleport. Don't use it too quickly, it makes CPU usage go through the roof :)"
 			message "<run command:/place spawn>=> Spawn"
 			message "<run command:/place inverse-island>=> Inverse Island"
 			message "<run command:/place library>=> Library"
@@ -89,6 +93,7 @@ command /places:
 			message "<run command:/place aarch-base>=> Aarchangel's Base"
 			message "<run command:/place petabyte-base>=> Secret Petabyte Base"
 			message "<run command:/place icecat-base>=> Icecat's Base"
+			message "<run command:/place icecat-secret-base>=> Icecat's Secret Base"
 			message "<run command:/place mott-base>=> Mott's Base"
 
 		else:
