@@ -53,6 +53,10 @@ command /about:
 		message "Matrix: skegcraft:matrix.org"
 		message "Site: https://skegcraft.net/"
 
+command /plugins:
+	trigger:
+		message "Source code for Skegcraft: https://github.com/skegcraft/skegsk"
+
 command /pause:
 	permission: admin
 	trigger:

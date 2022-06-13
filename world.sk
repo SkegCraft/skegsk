@@ -70,7 +70,9 @@ command /place <text>:
 				teleport player to location(-2007, 32, 547, world("old"))
 			else if arg-1 is "mott-base":
 				teleport player to location(-769, 63, 449, world("old"))
-			else
+			else if arg-1 is "random-land":
+				teleport player to location(509, 63, 3769, world("old"))
+			else:
 				message "Invalid location"
 		else:
 			message "Command only for old world"
@@ -95,6 +97,7 @@ command /places:
 			message "<run command:/place icecat-base>=> Icecat's Base"
 			message "<run command:/place icecat-secret-base>=> Icecat's Secret Base"
 			message "<run command:/place mott-base>=> Mott's Base"
+			message "<run command:/place random-land>=> Random Land"
 
 		else:
 			message "Command only for old world"
