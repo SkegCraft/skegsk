@@ -45,8 +45,8 @@ command /bf <text>:
 			else if {_char} is "]":
 				# Limiter to prevent crashes
 				set {_limiter} to {_limiter} + 1
-				if {_limiter} is 1000:
-					send "Capped 1000 loop, quitting" to player
+				if {_limiter} is 3000:
+					send "Capped 3000 loop, quitting" to player
 					stop trigger
 
 				if {_bp} is 1:

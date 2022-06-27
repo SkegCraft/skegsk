@@ -10,27 +10,19 @@ command /skeg1:
 			message "Sorry, you gotta get to the overworld first..."
 		else:
 			message OLD_MSG
-			teleport the player to location(OLD_SPAWN, world("old"))
+			teleport the player to location(OLD_SPAWN, world(SKEG_ONE))
 
 command /skeg2:
 	usage: "Teleport to the Skegcraft 2 world"
 	trigger:
 		if isWhitelisted(player) is true:
-			if player is not in "old":
+			if player is not in SKEG_ONE:
 				message "You must be in skeg1 to teleport"
 			else:
 				make console execute command "mv tp %player% world"
 		else:
 			message "Sorry, you aren't whitelisted. Apply at skegcraft.net"
 
-# Disable portals (end and nether)
-#on portal:
-#	if player is in "old":
-#		cancel event
-#		make console execute command "mv tp %player% old_nether"
-#	else if player is in "old_nether":
-#		cancel event
-#		make console execute command "mv tp %player% old"
 
 # Block out multiverse
 on command:
@@ -41,46 +33,46 @@ on command:
 
 command /place <text>:
 	trigger:
-		if player is in "old":
+		if player is in SKEG_ONE:
 			if arg-1 is "spawn":
-				teleport player to location(OLD_SPAWN, world("old"))
+				teleport player to location(OLD_SPAWN, world(SKEG_ONE))
 			else if arg-1 is "inverse-island":
-				teleport player to location(135, 32, 156, world("old"))
+				teleport player to location(135, 32, 156, world(SKEG_ONE))
 			else if arg-1 is "library":
-				teleport player to location(-31, 68, 35, world("old"))
+				teleport player to location(-31, 68, 35, world(SKEG_ONE))
 			else if arg-1 is "community-island":
-				teleport player to location(-490, 77, 257, world("old"))
+				teleport player to location(-490, 77, 257, world(SKEG_ONE))
 			else if arg-1 is "anna-base1":
-				teleport player to location(-548, 84, -88, world("old"))
+				teleport player to location(-548, 84, -88, world(SKEG_ONE))
 			else if arg-1 is "anna-base2":
-				teleport player to location(-1279, 83, -3169, world("old"))
+				teleport player to location(-1279, 83, -3169, world(SKEG_ONE))
 			else if arg-1 is "anna-base3":
-				teleport player to location(-6540, 98, -2916, world("old"))
+				teleport player to location(-6540, 98, -2916, world(SKEG_ONE))
 			else if arg-1 is "anna-base4":
-				teleport player to location(-6640, 63, -2758, world("old"))
+				teleport player to location(-6640, 63, -2758, world(SKEG_ONE))
 			else if arg-1 is "anna-base5":
-				teleport player to location(-7510, 63, -2770, world("old"))
+				teleport player to location(-7510, 63, -2770, world(SKEG_ONE))
 			else if arg-1 is "aarch-base":
-				teleport player to location(-467, 68, 1134, world("old"))
+				teleport player to location(-467, 68, 1134, world(SKEG_ONE))
 			else if arg-1 is "petabyte-base":
-				teleport player to location(-702, 66, -857, world("old"))
+				teleport player to location(-702, 66, -857, world(SKEG_ONE))
 			else if arg-1 is "icecat-base":
-				teleport player to location(-666, 70, 544, world("old"))
+				teleport player to location(-666, 70, 544, world(SKEG_ONE))
 			else if arg-1 is "icecat-secret-base":
-				teleport player to location(-2007, 32, 547, world("old"))
+				teleport player to location(-2007, 32, 547, world(SKEG_ONE))
 			else if arg-1 is "mott-base":
-				teleport player to location(-769, 63, 449, world("old"))
+				teleport player to location(-769, 63, 449, world(SKEG_ONE))
 			else if arg-1 is "random-land":
-				teleport player to location(509, 63, 3769, world("old"))
+				teleport player to location(509, 63, 3769, world(SKEG_ONE))
 			else:
 				message "Invalid location"
 		else:
-			message "Command only for old world"
+			message "Command only for old worlds"
 
 command /places:
 	# TODO: Place command
 	trigger:
-		if player is in "old":
+		if player is in SKEG_ONE:
 			message "<yellow><b>--- Places ---"
 			message "Click the link to teleport. Don't use it too quickly, it makes CPU usage go through the roof :)"
 			message "<run command:/place spawn>=> Spawn"
@@ -100,4 +92,4 @@ command /places:
 			message "<run command:/place random-land>=> Random Land"
 
 		else:
-			message "Command only for old world"
+			message "Command only for old worlds"

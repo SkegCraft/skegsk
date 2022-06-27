@@ -1,12 +1,10 @@
 # Skegcraft main backend
-# Daniel C, GPL 3.0
+# Daniel C (danielc.dev), GPL 3.0
+
+#define SKEG_ONE "skeg1"
+#define SKEG_ONE_NETHER "skeg1_nether"
 
 #include init.sk
-
-# TODO: players can abuse skeg1 to replicate /spawn
-# Players can abuse skeg1 to heal
-# note sidebar
-# detect when diamond or netherite is obtained and add to currency value
 
 #define OLD_SPAWN 216, 63, 243
 #define NEW_SPAWN 48, 68, 72
@@ -75,14 +73,14 @@ command /spawn:
 
 on join:
 	if isWhitelisted(player) is true:
-		if player is in "old" or "old_nether":
+		if player is in SKEG_ONE or SKEG_ONE_NETHER:
 			teleport the player to location(NEW_SPAWN, world("world"))
 		set join message to "<orange>Welcome, %player% to SkegCraft!"
 	else:
 		if player is in "world" or "world_the_end" or "world_nether":
-			teleport the player to location(OLD_SPAWN, world("old"))
+			teleport the player to location(OLD_SPAWN, world(SKEG_ONE))
 		message "Sorry, you aren't whitelisted in Skegcraft 2. You can still spectate the archived Skegcraft world."
-		message "<bold>Use this form to join: https://forms.gle/guorzZ63FZ133pqu9"
+		message "Use this form to join: https://forms.gle/guorzZ63FZ133pqu9"
 		message OLD_MSG
 
 	loop all players:
