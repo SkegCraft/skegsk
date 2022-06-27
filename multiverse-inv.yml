@@ -1,0 +1,14 @@
+# Multiverse-Inventories Settings
+
+settings:
+
+  locale: en
+  first_run: false
+  use_bypass: false
+  default_ungrouped_worlds: false
+  save_load_on_log_in_out: false
+  use_game_mode_profiles: false
+shares:
+  optionals_for_ungrouped_worlds: true
+  use_optionals:
+  - last_location

@@ -1,14 +1,20 @@
 # Skegcraft main backend
 # Daniel C (danielc.dev), GPL 3.0
 
-#define SKEG_ONE "skeg1"
-#define SKEG_ONE_NETHER "skeg1_nether"
+#ifdef BACKUP
+	#define SKEG_ONE "skeg1"
+	#define SKEG_ONE_NETHER "skeg1_nether"
+#else
+	#define SKEG_ONE "old"
+	#define SKEG_ONE_NETHER "old_nether"
+#endif
 
 #include init.sk
 
 #define OLD_SPAWN 216, 63, 243
 #define NEW_SPAWN 48, 68, 72
-#define OLD_MSG "Type /places for a list of memorable locations in Skegcraft 1. Also, note that maps aren't working."
+
+#define OLD_MSG "Type /places for a list of memorable locations in Skegcraft 1."
 
 #include whitelist.sk
 #include world.sk
@@ -69,7 +75,7 @@ command /resume:
 
 command /spawn:
 	trigger:
-		message "Head to 48, 68, 72"
+		message "Head to NEW_SPAWN"
 
 on join:
 	if isWhitelisted(player) is true:

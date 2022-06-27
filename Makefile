@@ -1,3 +1,5 @@
+# gpp -D BACKUP main.sk > output.sk
+
 FILE=$(shell echo ~/Skegcraft2/plugins/Skript/scripts/main.sk)
 
 all: $(FILE) sc
