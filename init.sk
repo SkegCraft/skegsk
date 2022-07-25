@@ -22,3 +22,6 @@ on load:
 
 	make console execute command "mv gamerule naturalRegeneration false %{_skeg1}%"
 	make console execute command "mv gamerule naturalRegeneration false %{_skeg1_nether}%"
+	
+	make console execute command "mv modify set gamemode spectator danland"
+	make console execute command "mv modify set difficulty peaceful danland"

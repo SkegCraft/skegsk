@@ -9,6 +9,8 @@
 	#define SKEG_ONE_NETHER "old_nether"
 #endif
 
+#define SKEG_ONE_2017 "danland"
+
 #include init.sk
 
 #define OLD_SPAWN 216, 63, 243

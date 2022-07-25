@@ -6,6 +6,8 @@ all: $(FILE) sc
 $(FILE): $(wildcard *.sk)
 	gpp main.sk > $(FILE)
 
+.PHONY: $(FILE)
+
 sc:
 	screen -S skegcraft -X stuff "skript reload main\nsay Skript Reloaded\n"
 
